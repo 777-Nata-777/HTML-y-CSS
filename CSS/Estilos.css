@@ -3,6 +3,7 @@ nav {
     font-size: 30px;
     text-align: center;
     padding: 15px;
+
 }
 a {
     color: rgb(255, 255, 255);
@@ -14,4 +15,71 @@ a {
 }
 body {
     font-family:Georgia, 'Times New Roman', Times, serif, Arial, sans-serif;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .Encabesado_form {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+}
+/* Header general */
+header {
+    display: flex;
+    justify-content: center; /* centra horizontalmente */
+    align-items: center;     /* centra verticalmente */
+    padding: 40px;
+    background-color: #000;
+    gap: 60px; /* espacio entre logo y buscador */
+}
+
+/* Imagen del logo */
+header img {
+    max-width: 350px;
+    height: auto;
+}
+.Encabesado {
+    display: flex;
+    align-items: center;
+    background-color: black;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(33, 15, 58, 0.3);
+}
+.Encabesado_form[type="text"] {
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    background-color: #222;
+    color: #fff;
+    margin-right: 10px;
+    width: 250px;
+}
+.Encabesado_form[type="text"]::placeholder {
+    color: #aaa;
+}
+.Encabesado_form[type="submit"] {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #6e30b6;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.Encabesado_form[type="submit"]:hover {
+    background-color: #3c135e;
 }
