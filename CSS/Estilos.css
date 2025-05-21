@@ -1,5 +1,9 @@
-nav {
+body {
     background-color: #000;
+    font-family:Georgia, 'Times New Roman', Times, serif, Arial, sans-serif;
+}
+nav {
+    background-color: #0f0f0f;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -35,9 +39,6 @@ nav a.Estoy {
     font-weight: bold;
     color: #6e30b6;
 }
-body {
-    font-family:Georgia, 'Times New Roman', Times, serif, Arial, sans-serif;
-}
 .barra_movible {
     display: flex;
     gap: 30px;
@@ -50,7 +51,7 @@ body {
     flex-shrink: 0;
     width: 200px;
     border-radius: 12px;
-    background-color: #181717;
+    background-color: #020202;
     overflow: hidden;
     transition: transform 0.3s ease;
 }
@@ -62,7 +63,6 @@ body {
     max-height: 100%;
     object-fit: contain;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(110, 48, 182, 0.6);
     image-rendering: auto;
 }
 .barra_imagen {
@@ -77,7 +77,7 @@ body {
     text-align: center;
     margin-top: 5px;
     font-size: 14px;
-    color: white;
+    color: #d4d4d4;
 }
 .barra_movible::after {
     content: "";
@@ -181,7 +181,7 @@ header {
     justify-content: center;
     align-items: center;
     padding: 40px;
-    background-color: #000;
+    background-color: #0c0c0c;
     gap: 60px;
 }
 header img {
@@ -191,7 +191,7 @@ header img {
 .Encabesado {
     display: flex;
     align-items: center;
-    background-color: black;
+    background-color: #111111;
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0 0 15px rgba(33, 15, 58, 0.3);
@@ -240,8 +240,8 @@ header img {
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background-color: #0e0e0e;
-    border-bottom: 2px solid #383838;
+    background-color: #0c0c0c;
+    border-bottom: 2px solid #292929;
     animation: fadeIn 1s ease-in-out;
 }
 .Ultimos h2 {
@@ -304,7 +304,7 @@ header img {
     animation: fadeInGrid 1s ease;
 }
 .Item_episodio {
-    background-color: #222121;
+    background-color: #0f0f0f;
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -321,13 +321,13 @@ header img {
     width: 100%;
     height: auto;
     display: block;
-    border-bottom: 2px solid #6e30b6;
+    border-bottom: 2px solid #292929;
 }
 .Epi_poster {
     position: absolute;
     bottom: 10px;
     right: 10px;
-    background: rgba(0, 0, 0, 0.7);
+    background: #292929;
     padding: 6px 12px;
     border-radius: 8px;
     font-size: 14px;
@@ -370,12 +370,12 @@ header img {
     }
 }
 footer {
-    background: #1a1a1a;
+    background: #0c0c0c;
     color: white;
     padding: 40px 20px 20px;
     font-family: 'Segoe UI', sans-serif;
     animation: fadeInUp 1.2s ease;
-    border-top: 3px solid #343335;
+    border-top: 3px solid #292929;
 }
 .fosuperior {
     display: flex;
@@ -456,4 +456,349 @@ footer {
     .fosuperior h1 {
         font-size: 1.6em;
     }
+}
+/*Iniciar secion*/
+.joker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+.Iniciar_sesion_form {
+    background-color: #1a1a1a;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(128, 0, 255, 0.3);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    animation: aparecer 0.8s ease-out;
+}
+.Iniciar_sesion_form img {
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    animation: floatIn 1s ease;
+}
+.Iniciar_sesion_form legend h1 {
+    color: #6d37b4;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    animation: fadeInUp 1s ease;
+}
+.Iniciar_sesion_form legend {
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+.Iniciar_sesion_form input[type="text"],
+.Iniciar_sesion_form input[type="password"] {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    background-color: #2a2a2a;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 15px;
+    max-width: 350px;
+}
+.Iniciar_sesion_form input[type="text"]:focus,
+.Iniciar_sesion_form input[type="password"]:focus {
+    background: #3a3a3a;
+    box-shadow: 0 0 10px #361969;
+}
+.Iniciar_sesion_form input[type="submit"] {
+    background: linear-gradient(90deg, #643fa3, #5a1691);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.Iniciar_sesion_form input[type="submit"]:hover {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #8f50ee, #7439f1);
+}
+.Iniciar_sesion_form fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes floatIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 480px) {
+    .Iniciar_sesion_form {
+        padding: 1.5rem;
+    }
+    .Iniciar_sesion_form legend h1 {
+        font-size: 1.4rem;
+    }
+    .Iniciar_sesion_form input[type="submit"] {
+        width: 100%;
+    }
+}
+/*Registrarse*/
+.div_registrarse {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+.div_registrarse form {
+    background-color: #1a1a1a;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(128, 0, 255, 0.3);
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    color: white;
+    animation: aparecer 0.8s ease-out;
+}
+.div_registrarse fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    border: none;
+}
+.div_registrarse legend h1 {
+    color: #a076f9;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+.div_registrarse input[type="text"],
+.div_registrarse input[type="password"],
+.div_registrarse input[type="email"],
+.div_registrarse input[type="date"],
+.div_registrarse textarea {
+    width: 90%;
+    max-width: 400px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #2a2a2a;
+    color: white;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+.div_registrarse textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+.div_registrarse input[type="submit"] {
+    background: linear-gradient(90deg, #643fa3, #5a1691);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 1rem;
+    width: 60%;
+    max-width: 200px;
+}
+.div_registrarse input[type="submit"]:hover {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #8f50ee, #7439f1);
+}
+.div_registrarse input[type="checkbox"] {
+    margin-right: 8px;
+}
+@media (max-width: 480px) {
+    .div_registrarse form {
+        padding: 1.5rem;
+    }
+    .div_registrarse legend h1 {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+    .div_registrarse textarea {
+        width: 100%;
+    }
+    .div_registrarse fieldset {
+        padding: 20px;
+    }
+    .div_registrarse input[type="text"],
+    .div_registrarse input[type="password"],
+    .div_registrarse input[type="email"],
+    .div_registrarse input[type="date"],
+    .div_registrarse textarea {
+        font-size: 14px;
+        padding: 8px;
+    }
+    .div_registrarse input[type="submit"] {
+        font-size: 14px;
+        padding: 8px 20px;
+    }
+}
+/*Contactos y servicios*/
+.servicios, .Contactos {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0c0c0c;
+    color: #7a7878;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.servicios h1 {
+    color: #4c208a;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.servicios h3 {
+    color: #442174;
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+.servicios p {
+    line-height: 1.6;
+    margin: 0 0 15px 0;
+}
+.servicios ul {
+    padding-left: 20px;
+}
+.servicios ul li {
+    margin-bottom: 5px;
+    list-style-type: none;
+    font-weight: bold;
+}
+.Contactos h1 {
+    color: #4c208a;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.Contactos h3 {
+    color: #442174;
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+.Contactos p {
+    line-height: 1.6;
+    margin: 0 0 15px 0;
+}
+.Contactos ul {
+    padding-left: 20px;
+}
+.Contactos ul li {
+    margin-bottom: 5px;
+    list-style-type: none;
+    font-weight: bold;
+}
+.Contactos ul ul {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding-left: 25px;
+}
+.Contactos ul ul li {
+    font-weight: normal;
+    list-style-type: disc;
+}
+@media (max-width: 600px) {
+    .servicios, .Contactos {
+        padding: 15px;
+    }
+    .servicios h1, .Contactos h1 {
+        font-size: 1.5em;
+    }
+    .servicios h3, .Contactos h3 {
+        font-size: 1.1em;
+    }
+    .servicios p, .Contactos p {
+        font-size: 0.95em;
+    }
+}
+/*Barra de recomendacion de servicios*/
+h2.Recomendaciones {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 30px 0 10px 15px;
+    font-size: 1.4em;
+    color: #d4d3d4;
+}
+h2.Recomendaciones {
+    display: block;
+}
+h2.Recomendaciones::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+h2.Recomendaciones {
+    position: relative;
+}
+@media (max-width: 600px) {
+    h2.Recomendaciones {
+        font-size: 1.2em;
+    }
+    .carousel img {
+        width: 120px;
+        height: 200px;
+    }
+}
+.seccion {
+    background-color: #0c0c0c;
+    border-radius: 30px;
+}
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    margin: 0 auto;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    background-color: #0f0f0f;
+    border-radius: 40px;
+}
+.carousel::-webkit-scrollbar {
+    height: 8px;
+}
+.carousel::-webkit-scrollbar-thumb {
+    background-color: #5e5e5e;
+    border-radius: 4px;
+}
+.carousel a {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+}
+.carousel img {
+    height: 250px;
+    border-radius: 8px;
+}
+@keyframes scrollInfinite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.carousel.infinite {
+    animation: scrollInfinite 40s linear infinite;
+    white-space: nowrap;
+}
+.carousel img:hover {
+    transform: scale(1.05);
 }
