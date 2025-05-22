@@ -1,5 +1,5 @@
 body {
-    background-color: #000;
+    background-color: white;
     font-family:Georgia, 'Times New Roman', Times, serif, Arial, sans-serif;
 }
 nav {
@@ -369,6 +369,7 @@ header img {
         padding: 4px 8px;
     }
 }
+/*Pie de pagina*/
 footer {
     background: #0c0c0c;
     color: white;
@@ -801,4 +802,92 @@ h2.Recomendaciones {
 }
 .carousel img:hover {
     transform: scale(1.05);
+}
+/*Informacion*/
+.Informacion {
+    background-color: #0c0c0c;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 40px;
+    margin: 30px auto;
+    max-width: 1000px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    animation: fadeIn 1s ease-in-out;
+}
+.Informacion h1, .Informacion h2 {
+    color: #4c208a;
+    text-shadow: 2px 2px 4px #000000;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+.Informacion h1:hover, .Informacion h2:hover {
+    transform: scale(1.05);
+}
+.Informacion p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+    color: #cccccc;
+    animation: slideUp 1s ease forwards;
+    opacity: 0;
+}
+.Informacion p:nth-child(even) {
+    animation-delay: 0.2s;
+}
+.Informacion p:nth-child(odd) {
+    animation-delay: 0.4s;
+}
+.Informacion ul {
+    list-style: none;
+    padding-left: 20px;
+}
+.Informacion ul ul {
+    margin-top: 10px;
+    padding-left: 25px;
+}
+.Informacion ul ul li {
+    font-weight: normal;
+    color: #b3b3b3;
+    list-style-type: disc;
+}
+.Foto_Aaron_Farfan {
+    text-align: center;
+    margin: 25px 0;
+}
+.Foto_Aaron_Farfan img {
+    border-radius: 16px;
+    box-shadow: 0 8px 20px #442174;
+    transition: transform 0.4s ease;
+}
+.Foto_Aaron_Farfan img:hover {
+    transform: scale(1.03);
+}
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@media (max-width: 700px) {
+    .Informacion {
+        padding: 20px;
+    }
+    .Informacion h1 {
+        font-size: 1.5em;
+    }
+    .Informacion h2 {
+        font-size: 1.2em;
+    }
+    .Foto_Aaron_Farfan img {
+        width: 90%;
+        height: auto;
+    }
 }

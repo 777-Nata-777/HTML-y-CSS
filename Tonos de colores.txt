@@ -1,2 +1,6 @@
 Oscuro
-0c0c0c -> 0f0f0f -> 111111 -> 292929
+0c0c0c -> 0f0f0f -> 111111 -> 
+Morado
+442174 -> 4c208a -> 6e30b6
+Blanco
+ffffff -> b3b3b3
