@@ -1,6 +1,8 @@
 Oscuro
 0c0c0c -> 0f0f0f -> 111111 -> 
 Morado
-442174 -> 4c208a -> 6e30b6
+442174 -> 4c208a -> 6e30b6 ->
 Blanco
-ffffff -> b3b3b3
+ffffff -> b3b3b3 ->
+Azul
+834eff -> 5528c0 -> 4f22b8 -> 27125a ->
