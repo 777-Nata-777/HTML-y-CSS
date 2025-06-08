@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrador de Animes</title>
+    <link rel="stylesheet" href="{% static 'CSS/admin_animes.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Administrar Animes</h1>
+    <div class="boton-crear">
+        <a href="{% url 'crear_anime' %}" class="boton">+ Crear Anime</a>
+    </div>
+
+    <div class="anime-grid">
+        {% for anime in animes %}
+        <div class="anime-card" data-id="{{ anime.id }}">
+            <div class="img-container">
+                <img src="{{ anime.portada.url }}" alt="{{ anime.nombre }}">
+                <div class="overlay">
+                    <a href="{% url 'editar_anime' anime.id %}" class="btn">Editar</a>
+                    <button class="btn btn-rojo" onclick="eliminarAnime('{{ anime.id }}')">Eliminar</button>
+                </div>
+            </div>
+            <p>{{ anime.nombre }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function eliminarAnime(id) {
+            if (confirm("¿Estás seguro de eliminar este anime?")) {
+                $.ajax({
+                    url: "{% url 'eliminar_anime' %}",
+                    method: "POST",
+                    headers: {
+                        "X-CSRFToken": "{{ csrf_token }}"
+                    },
+                    data: {
+                        "anime_id": id
+                    },
+                    success: function(response) {
+                        if (response.ok) {
+                            document.querySelector(`[data-id="${id}"]`).remove();
+                        } else {
+                            alert("Error al eliminar.");
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
