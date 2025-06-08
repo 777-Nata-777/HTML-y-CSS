@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Anime</title>
+    <link rel="stylesheet" href="{% static 'CSS/crear_Anime.css' %}">
+    <body>
+        <h1>Registrar Anime</h1>
+        <form method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+        
+            <!-- Datos básicos -->
+            <label>Nombre del Anime:</label><br>
+            <input type="text" name="nombre" required><br><br>
+        
+            <label>Descripción:</label><br>
+            <textarea name="descripcion" required></textarea><br><br>
+        
+            <label>Portada:</label><br>
+            <input type="file" name="portada" accept="image/*"
+                onchange="previewImage(this,'previewPortada')" required><br>
+            <img id="previewPortada" class="preview-img" style="display:none;"><br><br>
+        
+            <label>Portada Grande (1300×700):</label><br>
+            <input type="file" name="portada_grande" accept="image/*"
+                onchange="previewImage(this,'previewPortadaGrande')" required><br>
+            <img id="previewPortadaGrande" class="preview-img" style="display:none;"><br><br>
+        
+            <!-- Temporadas y episodios -->
+            <div id="temporadas-container"></div>
+            <button type="button" class="boton" onclick="agregarTemporada()">+ Temporada</button><br><br>
+        
+            <!-- Etiquetas -->
+            <div class="etiqueta">
+                <label>Etiquetas:</label><br>
+                <div id="etiquetas-seleccionadas" class="etiquetas-seleccionadas"></div><br>
+        
+                <button type="button" class="boton" onclick="mostrarPanelSeleccion()">Elegir etiqueta</button>
+                <button type="button" class="boton" onclick="mostrarInputCrear()">Crear etiqueta</button><br>
+        
+                <!-- Input crear etiqueta -->
+                <div id="crear-etiqueta-container" style="display:none;">
+                    <input type="text" id="nueva-etiqueta"
+                        placeholder="Escribe y presiona Enter para crear"
+                        onkeypress="guardarEtiqueta(event)">
+                    <button type="button" class="boton-rojo" onclick="ocultarInputCrear()">Cancelar</button>
+                </div><br>
+        
+                <!-- Panel selección etiquetas -->
+                <div id="panel-seleccion-etiquetas" class="etiquetas-panel" style="display:none;">
+                    <input type="text" placeholder="Buscar..." oninput="buscarEtiqueta(this.value)"><br>
+                    <div id="lista-etiquetas">
+                        <!-- Carga dinámicamente tus etiquetas aquí -->
+                    </div>
+                    <button type="button" class="boton-rojo" onclick="cerrarPanelSeleccion()">Cerrar</button>
+                </div>
+            </div><br>
+            <!-- Este campo recogerá las etiquetas para enviarlas al servidor -->
+            <input type="hidden" name="etiquetas" id="etiquetas-hidden">
+
+            <button type="submit" class="boton">Guardar</button>
+        </form>
+        
+        <script>
+        let numTemporadas = 0;
+        
+        // Temporadas
+        function agregarTemporada() {
+            numTemporadas++;
+            const container = document.getElementById("temporadas-container");
+        
+            const details = document.createElement("details");
+            details.className = "temporada";
+            details.setAttribute("data-temp", numTemporadas);
+        
+            details.innerHTML = `
+                <summary>
+                    Temporada ${numTemporadas}
+                    <button type="button" class="boton-rojo"
+                            onclick="eliminarTemporada(event,this)">- Tem.</button>
+                </summary>
+                <div class="episodios-container"></div>
+                <button type="button" class="boton" onclick="agregarEpisodio(this)">+ Episodio</button>
+            `;
+            container.appendChild(details);
+        }
+        
+        function eliminarTemporada(e, btn) {
+            e.stopPropagation();
+            btn.closest('details').remove();
+            actualizarNumerosTemporadas();
+        }
+        
+        function actualizarNumerosTemporadas() {
+            const detalles = document.querySelectorAll("details.temporada");
+            numTemporadas = detalles.length;
+            detalles.forEach((det, i) => {
+                det.setAttribute("data-temp", i+1);
+                det.querySelector("summary").childNodes[0].textContent = `Temporada ${i+1}`;
+            });
+        }
+        
+        // Episodios
+        function agregarEpisodio(btn) {
+            const details = btn.closest('details');
+            const t = details.dataset.temp;
+            const container = details.querySelector('.episodios-container');
+            const numEp = container.querySelectorAll('.episodio').length + 1;
+
+            const epDiv = document.createElement("div");
+            epDiv.className = "episodio";
+            epDiv.innerHTML = `
+                <strong>Ep ${numEp}:</strong>
+                <button type="button" class="boton-rojo" onclick="eliminarEpisodio(this)">- Ep.</button><br>
+
+                Nombre: <input type="text" name="nombre_episodio_${t}_${numEp}"><br>
+
+                Video: <input type="file"
+                            name="video_${t}_${numEp}"
+                            accept="video/*"
+                            onchange="previewVideo(this,this.parentNode.querySelector('video'))"><br>
+                <video controls class="preview-video" style="display:none;"></video><br>
+
+                Portada Ep: <input type="file"
+                                name="portada_ep_${t}_${numEp}"
+                                accept="image/*"
+                                onchange="previewImage(this,this.parentNode.querySelector('img'))"><br>
+                <img class="preview-img" style="display:none;"><br>
+            `;
+            container.appendChild(epDiv);
+        }
+
+        
+        function eliminarEpisodio(btn) {
+            btn.closest('.episodio').remove();
+            // opcional: renumerar episodios dentro de la temporada
+        }
+        
+        // Previews
+        function previewImage(input, target) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                // Si target es un string, lo tratamos como id
+                const imgEl = (typeof target === 'string')
+                    ? document.getElementById(target)
+                    : target;
+                imgEl.src = e.target.result;
+                imgEl.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+
+
+        
+        function previewVideo(input, videoEl) {
+            const file = input.files[0];
+            if (!file) return;
+            videoEl.src = URL.createObjectURL(file);
+            videoEl.style.display = 'block';
+        }
+        
+        // Etiquetas
+        let etiquetasCargadas = [];  // Guardar etiquetas
+
+        function mostrarPanelSeleccion() {
+            document.getElementById("panel-seleccion-etiquetas").style.display = "block";
+            document.getElementById("crear-etiqueta-container").style.display = "none";
+
+            if (etiquetasCargadas.length === 0) {
+                fetch('/obtener-etiquetas/')
+                    .then(res => res.json())
+                    .then(data => {
+                        etiquetasCargadas = data.etiquetas;
+                        mostrarEtiquetas(etiquetasCargadas);
+                    });
+            } else {
+                mostrarEtiquetas(etiquetasCargadas);
+            }
+        }
+
+        function mostrarEtiquetas(etiquetas) {
+            const lista = document.getElementById("lista-etiquetas");
+            lista.innerHTML = '';
+            etiquetas.forEach(nombre => {
+                const span = document.createElement("span");
+                span.textContent = nombre;
+                span.classList.add("etiqueta-item");
+                span.onclick = () => seleccionarEtiqueta(nombre);
+                lista.appendChild(span);
+            });
+        }
+
+        
+        function cerrarPanelSeleccion() {
+            document.getElementById("panel-seleccion-etiquetas").style.display = "none";
+        }
+        
+        function mostrarInputCrear() {
+            document.getElementById("crear-etiqueta-container").style.display = "block";
+            document.getElementById("panel-seleccion-etiquetas").style.display = "none";
+            document.getElementById("nueva-etiqueta").focus();
+        }
+        
+        function ocultarInputCrear() {
+            document.getElementById("crear-etiqueta-container").style.display = "none";
+        }
+        
+        function guardarEtiqueta(e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                const nombre = e.target.value.trim();
+                if (nombre) {
+                    seleccionarEtiqueta(nombre);
+                    e.target.value = "";
+                }
+            }
+        }
+        
+        function seleccionarEtiqueta(nombre) {
+            const cont = document.getElementById("etiquetas-seleccionadas");
+            if ([...cont.children].some(s=>s.dataset.nombre===nombre)) return;
+            const span = document.createElement("span");
+            span.dataset.nombre = nombre;
+            span.innerHTML = `${nombre} <button type="button" onclick="this.parentNode.remove()">X</button>`;
+            cont.appendChild(span);
+        }
+        
+        function buscarEtiqueta(texto) {
+    const filtradas = etiquetasCargadas.filter(et =>
+        et.toLowerCase().includes(texto.toLowerCase())
+    );
+    mostrarEtiquetas(filtradas);
+}
+
+        </script>
+        
+    </body>
+</html>
