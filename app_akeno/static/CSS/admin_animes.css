@@ -1,0 +1,85 @@
+body {
+    font-family: Arial;
+    background: #f8f8f8;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.boton-crear {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.boton {
+    padding: 10px 20px;
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.anime-card {
+    text-align: center;
+    position: relative;
+}
+
+.img-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.img-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: 0.3s ease;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 0.3s ease;
+}
+
+.img-container:hover img {
+    filter: brightness(40%);
+}
+
+.img-container:hover .overlay {
+    opacity: 1;
+}
+
+.btn {
+    background: #2ecc71;
+    padding: 8px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-rojo {
+    background: #e74c3c;
+}

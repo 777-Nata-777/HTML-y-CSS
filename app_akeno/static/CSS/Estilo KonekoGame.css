@@ -1,0 +1,403 @@
+body {
+    background-color: black;
+    font-family:Georgia, 'Times New Roman', Times, serif, Arial, sans-serif;
+}
+nav {
+    background-color: #0f0f0f;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 15px;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+}
+nav a {
+    position: relative;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: color 0.3s ease;
+}
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 3px;
+    background-color: #5528c0;
+    transition: width 0.3s ease;
+}
+nav a:hover::after {
+    width: 100%;
+}
+nav a:hover {
+    color: #4f22b8;
+}
+nav a.Estoy {
+    font-weight: bold;
+    color: #4f22b8;
+}
+.barra_movible {
+    display: flex;
+    gap: 30px;
+    min-width: 100%;
+    overflow: hidden;
+    animation: moverCarrusel 40s linear infinite;
+    padding: 20px 0;
+}
+.barra_movible_item {
+    flex-shrink: 0;
+    width: 200px;
+    border-radius: 12px;
+    background-color: #020202;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+.barra_movible_item:hover {
+    transform: scale(1.05);
+}
+.barra_imagen img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    image-rendering: auto;
+}
+.barra_imagen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    background-color: #000;
+}
+.barra_titulo {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #d4d4d4;
+}
+.barra_movible::after {
+    content: "";
+    display: block;
+    width: 100%;
+}
+.barra_movible:hover {
+    animation-play-state: paused;
+}
+@media (max-width: 768px) {
+    .barra_movible {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 10px;
+        animation: moverCarruselMobile 45s linear infinite;
+        overflow: hidden;
+    }
+    .barra_movible_item {
+        flex: 0 0 auto;
+        width: 130px;
+    }
+    .barra_imagen {
+        width: 100%;
+        height: 180px;
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: black;
+    }
+    .barra_imagen img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        image-rendering: auto;
+    }
+    .barra_titulo {
+        font-size: 12px;
+        text-align: center;
+        color: white;
+        margin-top: 5px;
+        padding: 0 5px;
+        word-wrap: break-word;
+    }
+    @keyframes moverCarruselMobile {
+        0% {
+            transform: translateX(0%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+}
+@media (max-width: 768px) {
+    .barra_movible_item {
+        width: 100px;
+    }
+    .barra_titulo {
+        font-size: 12px;
+    }
+    .barra_movible {
+        gap: 15px;
+        animation: moverCarruselMobile 30s linear infinite;
+    }    
+    @keyframes moverCarruselMobile {
+        0% {
+            transform: translateX(0%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+}
+@keyframes moverCarrusel {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .Encabesado_form {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+}
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background-color: #0c0c0c;
+    gap: 60px;
+}
+header img {
+    max-width: 350px;
+    height: auto;
+}
+.Encabesado {
+    display: flex;
+    align-items: center;
+    background-color: #111111;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(33, 15, 58, 0.3);
+}
+.Encabesado_form[type="text"] {
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    background-color: #222;
+    color: #fff;
+    margin-right: 10px;
+    width: 250px;
+}
+.Encabesado_form[type="text"]::placeholder {
+    color: #aaa;
+}
+.Encabesado_form[type="submit"] {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #5528c0;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.Encabesado_form[type="submit"]:hover {
+    background-color: #27125a;
+}
+@media (max-width: 768px) {
+    nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        font-size: 16px;
+        padding: 10px;
+    }
+    nav a {
+        padding: 8px 10px;
+    }
+}
+/*Pie de pagina*/
+footer {
+    background: #0c0c0c;
+    color: white;
+    padding: 40px 20px 20px;
+    font-family: 'Segoe UI', sans-serif;
+    animation: fadeInUp 1.2s ease;
+    border-top: 3px solid #292929;
+}
+.fosuperior {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+.fosuperior h2 {
+    font-size: 2.2em;
+    color: #ffffff;
+    text-shadow: 0 0 10px #5528c0;
+    animation: slideFade 1s ease-in;
+}
+.fosuperior h1 {
+    font-size: 2.2em;
+    color: #ffffff;
+    text-shadow: 0 0 10px #5528c0;
+    animation: slideFade 1s ease-in;
+}
+.fosuperior a {
+    color: #4f22b8;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.fosuperior a:hover {
+    color: #834eff;
+    text-decoration: underline;
+}
+.fosuperior div {
+    font-size: 14px;
+    color: #ccc;
+    animation: fadeIn 1.5s ease;
+}
+.foinferior {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 13px;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+    animation: fadeIn 2s ease;
+}
+.foinferior p {
+    margin: 0;
+    color: #888;
+}
+.foinferior a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.foinferior a:hover {
+    color: #fff;
+    text-shadow: 0 0 5px #5528c0;
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideFade {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 600px) {
+    .foinferior {
+        flex-direction: row;
+        align-items: center;
+        gap: 15px;
+    }
+    .fosuperior h1 {
+        font-size: 1.6em;
+    }
+}
+/*Juegos*/
+.Juegos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    padding: 40px;
+}
+.Juegos > div {
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.6s ease;
+}
+.Juegos > div:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px #27125a;
+}
+.Juegos img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+.Juegos h3 {
+    font-size: 22px;
+    color: #4f22b8;
+    margin: 10px 0;
+}
+.Juegos p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    color: #b3b3b3;
+}
+.Juegos a:last-child {
+    display: inline-block;
+    padding: 10px 16px;
+    background-color: #5528c0;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.Juegos a:last-child:hover {
+    background-color: #834eff;
+    transform: scale(1.05);
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@media (max-width: 480px) {
+    .Juegos {
+        padding: 20px;
+    }
+    .Juegos h3 {
+        font-size: 18px;
+    }
+    .Juegos p {
+        font-size: 13px;
+    }
+    .Juegos a:last-child {
+        font-size: 13px;
+        padding: 8px 14px;
+    }
+}
