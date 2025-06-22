@@ -1,55 +1,97 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="es">
+    {% load static %}
 <head>
     <meta charset="UTF-8">
     <title>Administrador de Animes</title>
     <link rel="stylesheet" href="{% static 'CSS/admin_animes.css' %}">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h1>Administrar Animes</h1>
-    <div class="boton-crear">
-        <a href="{% url 'crear_anime' %}" class="boton">+ Crear Anime</a>
-    </div>
+    <div class="contenedor-principal">
+        <!-- Logo y título -->
+        <header class="header">
+            <div class="logo">
+                <img src="{% static 'Imagenes/AkaneGo_Logo.png' %}" alt="AKANEGO">
+            </div>
+            <h1>Analista</h1>
+        </header>
 
-    <div class="anime-grid">
-        {% for anime in animes %}
-        <div class="anime-card" data-id="{{ anime.id }}">
-            <div class="img-container">
-                <img src="{{ anime.portada.url }}" alt="{{ anime.nombre }}">
-                <div class="overlay">
-                    <a href="{% url 'editar_anime' anime.id %}" class="btn">Editar</a>
-                    <button class="btn btn-rojo" onclick="eliminarAnime('{{ anime.id }}')">Eliminar</button>
+        <!-- Panel lateral derecho -->
+        <aside class="panel-derecho">
+            <button class="btn rojo">Cerrar Sesión</button>
+            <button class="btn amarillo">Papelera</button>
+            <a href="{% url 'crear_anime' %}" class="btn verde">Añadir Anime</a>
+            <!-- Menú hamburguesa y búsqueda -->
+            <div class="menu-acciones">
+                <button class="icono hamburguesa" onclick="toggleMenu()">☰</button>
+                <button class="icono lupa" onclick="toggleBusqueda()">🔍</button>
+                <button class="icono foco" onclick="toggleModoOscuro()">💡</button>
+            </div>
+            <!-- Panel de búsqueda oculto -->
+            <div class="busqueda-panel oculto" id="busquedaPanel">
+                <input type="text" id="busquedaNombreId" placeholder="Nombre o Id">
+                <div class="filtro-etiqueta" onclick="toggleFiltroEtiquetas()">
+                    Etiqueta ⏷
+                </div>
+                <div class="etiquetas-desplegable oculto" id="etiquetasLista">
+                    <!-- Estas etiquetas deben generarse en el backend o con JSON si tenés API -->
+                    {% for etiqueta in etiquetas %}
+                        <label><input type="checkbox" value="{{ etiqueta }}"> {{ etiqueta }}</label>
+                    {% endfor %}
+                    <!-- etc -->
                 </div>
             </div>
-            <p>{{ anime.nombre }}</p>
-        </div>
-        {% endfor %}
-    </div>
+        </aside>
 
-    <script>
-        function eliminarAnime(id) {
-            if (confirm("¿Estás seguro de eliminar este anime?")) {
-                $.ajax({
-                    url: "{% url 'eliminar_anime' %}",
-                    method: "POST",
-                    headers: {
-                        "X-CSRFToken": "{{ csrf_token }}"
-                    },
-                    data: {
-                        "anime_id": id
-                    },
-                    success: function(response) {
-                        if (response.ok) {
-                            document.querySelector(`[data-id="${id}"]`).remove();
-                        } else {
-                            alert("Error al eliminar.");
-                        }
-                    }
-                });
-            }
-        }
-    </script>
+        <!-- Tabla de animes -->
+        <main class="tabla-animes">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Portada</th>
+                        <th>Portada grande y Nombre</th>
+                        <th>Descripción</th>
+                        <th>Datos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for anime in animes %}
+                    <tr>
+                        <td>
+                            <img src="{{ anime.portada.url }}" class="portada-chica">
+                        </td>
+                        <td>
+                            <img src="{{ anime.portada_grande.url }}" class="portada-grande">
+                            <div class="nombre-anime">{{ anime.nombre }}</div>
+                        </td>
+                        <td class="descripcion">
+                            <div class="scrollable-descripcion">
+                                {{ anime.descripcion }}
+                            </div>
+                        </td>
+                        <td class="datos">
+                            <p>Fecha de estreno: {{ anime.fecha_estreno|default:"**/**/****" }}</p>
+                            <p>Finalizado: {{ anime.finalizado|yesno:"SI,NO" }}</p>
+                            <p>ID: {{ anime.id }}</p>
+                            <p><strong>Etiquetas</strong></p>
+                            <div class="etiquetas-scroll">
+                                <div class="etiquetas">
+                                    {% for et in anime.etiquetas.all %}
+                                        <span class="etiqueta">{{ et.nombre }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>                            
+                            <div class="acciones">
+                                <button class="eliminar">Eliminar</button>
+                                <a href="{% url 'editar_anime' anime.id %}" class="editar">Editar</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+    </div>
+    <script src="{% static 'JS/admin_animes.js' %}"></script>
 </body>
 </html>
